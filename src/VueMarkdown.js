@@ -59,6 +59,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    katex: {
+      type: Boolean,
+      default: false,
+    },
     typographer: {
       type: Boolean,
       default: true,
@@ -146,8 +150,11 @@ export default {
       .use(abbreviation)
       .use(insert)
       .use(mark)
-      .use(katex, { "throwOnError": false, "errorColor": " #cc0000" })
       .use(tasklists, { enabled: this.taskLists })
+
+    if (this.katex) {
+      this.md.use(katex, { "throwOnError": false, "errorColor": " #cc0000" })
+    }
 
     if (this.emoji) {
       this.md.use(emoji)
